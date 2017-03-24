@@ -34,7 +34,7 @@
             </Style>
 
             <Style TargetType="{x:Type Label}" >
-                <Setter Property="Margin" Value="10" />
+                <Setter Property="Margin" Value="10,5" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="15" />
@@ -55,7 +55,7 @@
                 <Setter Property="VerticalContentAlignment" Value="Center" />
                 <Setter Property="HorizontalContentAlignment" Value="Right" />
                 <Setter Property="Width" Value="40" />
-                <Setter Property="Margin" Value="2,10,2,10" />
+                <Setter Property="Margin" Value="2,5,2,5" />
             </Style>
             
         </Grid.Resources>
@@ -99,7 +99,7 @@
                 
                     <Label Content="Actions per loop:" 
                            ToolTip="Set how many actions will be performed per loop. The number of actions will be selected randomly for every loop, by given range."
-                           Margin="10,10,2,10"/>
+                           Margin="0,0,2,0"/>
 
                     <TextBox Text="10" 
                              MaxLength="2"
@@ -108,7 +108,7 @@
                              LostFocus="NumberOfActionsMinValueTextBox_LostFocus"/>
 
                     <Label Content="-" 
-                           Margin="2,10,2,10"/>
+                           Margin="2,0,2,0"/>
 
                     <TextBox Text="30"
                              MaxLength="2"
@@ -120,12 +120,12 @@
                 <StackPanel Margin="10,0,0,0">
 
                     <Label Content="Interval [s]:" 
-                           Margin="10,10,2,10"
+                           Margin="0,0,2,0"
                            ToolTip="Set how much time has to pass between actions."/>
 
                     <TextBox Text="30" 
                              x:Name="IntervalTextBox"
-                             Margin="2,10,10,10"
+                             Margin="2,0,0,0"
                              ToolTip="Set how much time has to pass between actions."
                              LostFocus="IntervalTextBox_LostFocus"/>
                 </StackPanel>
@@ -143,16 +143,17 @@
                           VerticalContentAlignment="Center">
                     <CheckBox.Content>
                         <TextBlock Text="Use keyboard while performing action"
-                                   FontSize="12"/>
+                                   FontSize="12"
+                                   Margin="2,0,0,0"/>
                     </CheckBox.Content>
                 </CheckBox>
             </GroupBox.Header>
 
-            <StackPanel>
+            <StackPanel x:Name="KeyboardOptionsStackPanel">
 
                 <Label Content="Text written per action:" 
                        ToolTip="Set what will be written in each action. You can input up to 10 characters."
-                       Margin="10,10,2,10"/>
+                       Margin="0,0,2,0"/>
 
                 <TextBox Text="Q" 
                          x:Name="KeyboardInputTextBox"

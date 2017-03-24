@@ -30,31 +30,17 @@ namespace MouseMove
         {
             InitializeComponent();
 
-            StopButton.IsEnabled = false;
+            SetIsEnabled(true);
             IsKeyboardIncluded.IsChecked = true;
         }
 
+        #region -- Initialization methods --
 
-        public Point GetMousePositionWindowsForms()
+        private void InitializeTimer()
         {
-            System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
-            return new Point(point.X, point.Y);
-        }
-
-        private void StartButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetIsEnabled(false);
-
-            interval = Convert.ToInt32(IntervalTextBox.Text);
-            InitializeProgressBar();
-
-            StopButton.IsEnabled = true;
-            StartButton.IsEnabled = false;
-
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
-            timer.Start();
         }
 
         private void InitializeProgressBar(int start = 0)
@@ -64,122 +50,18 @@ namespace MouseMove
             TimeProgressBar.Value = start;
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            var secondsPassed = UpdateTimerLabels();
-            var mod = secondsPassed % interval;
-
-            if (mod == 0)
-            {
-                MoveMouse();
-            }
-
-            TimeProgressBar.Value = mod;
-        }
-
-        private int UpdateTimerLabels()
-        {
-            int secondsPassed;
-            var secondsInt = int.TryParse(TimerLabelSeconds.Text, out secondsPassed);
-
-            int minutesPassed;
-            var minutesInt = int.TryParse(TimerLabelMinutes.Text, out minutesPassed);
-
-            int hoursPassed;
-            var hoursInt = int.TryParse(TimerLabelHours.Text, out hoursPassed);
-
-            if (secondsInt && minutesInt && hoursInt)
-            {
-                if (secondsPassed % 60 == 0 && secondsPassed > 0)
-                {
-                    TimerLabelSeconds.Text = "00";
-                    minutesPassed = minutesPassed + 1;
-                    secondsPassed = 0;
-
-                    if (minutesPassed % 60 == 0 && minutesPassed > 0)
-                    {
-                        TimerLabelMinutes.Text = "00";
-                        hoursPassed = hoursPassed + 1;
-                        minutesPassed = 0;
-                    }
-                }
-
-                secondsPassed = secondsPassed + 1;
-
-                TimerLabelSeconds.Text = secondsPassed < 10 ? "0" + secondsPassed : secondsPassed.ToString();
-                TimerLabelMinutes.Text = minutesPassed < 10 ? "0" + minutesPassed : minutesPassed.ToString();
-                TimerLabelHours.Text = hoursPassed < 10 ? "0" + hoursPassed : hoursPassed.ToString();
-            }
-
-            return secondsPassed;
-        }
-
-
-        private void MoveMouse()
-        {
-            var random = new Random();
-            var numberOfMoves = random.Next(10, 20);
-            var currentMousePosition = GetMousePositionWindowsForms();
-
-            for (int i = 1; i <= numberOfMoves; i++)
-            {
-                SetCursorPos((int)currentMousePosition.X + random.Next(200), (int)currentMousePosition.Y);
-                System.Threading.Thread.Sleep(50);
-                SetCursorPos((int)currentMousePosition.X + random.Next(200), (int)currentMousePosition.Y - random.Next(200));
-                System.Threading.Thread.Sleep(50);
-                SetCursorPos((int)currentMousePosition.X, (int)currentMousePosition.Y - random.Next(200));
-                System.Threading.Thread.Sleep(50);
-
-                System.Windows.Forms.SendKeys.SendWait("Q");
-            }
-
-            SetCursorPos((int)currentMousePosition.X, (int)currentMousePosition.Y);
-        }
-
-        private void StopButton_Click(object sender, RoutedEventArgs e)
-        {
-            SetIsEnabled(true);
-            StartButton.IsEnabled = true;
-            StopButton.IsEnabled = false;
-
-            timer.Stop();
-            TimerLabelSeconds.Text = "00";
-            TimerLabelMinutes.Text = "00";
-            TimerLabelHours.Text = "00";
-            TimeProgressBar.Value = 0;
-        }
-
-        private void NumericTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var control = sender as System.Windows.Controls.TextBox;
-            if (control != null)
-            {
-                int result;
-                var isInt = int.TryParse(control.Text, out result);
-
-                if (!isInt || result < 0)
-                {
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void SetIsEnabled(bool state)
-        {
-            KeyboardGroupbox.IsEnabled = state;
-            OptionsGroupBox.IsEnabled = state;
-        }
+        #endregion
 
         #region -- UI validation --
 
         private void IsKeyboardIncluded_Checked(object sender, RoutedEventArgs e)
         {
-            KeyboardInputTextBox.IsEnabled = true;
+            KeyboardOptionsStackPanel.IsEnabled = true;
         }
 
         private void IsKeyboardIncluded_Unchecked(object sender, RoutedEventArgs e)
         {
-            KeyboardInputTextBox.IsEnabled = false;
+            KeyboardOptionsStackPanel.IsEnabled = false;
         }
 
         private void NumberOfActionsMinValueTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -250,7 +132,7 @@ namespace MouseMove
                     e.Handled = true;
                 }
 
-                if(result > 300)
+                if (result > 300)
                 {
                     control.Text = "300";
                     e.Handled = true;
@@ -259,5 +141,124 @@ namespace MouseMove
         }
 
         #endregion
+
+        #region -- Value setting methods --
+
+        private void ResetTimerValues()
+        {
+            TimerLabelSeconds.Text = "00";
+            TimerLabelMinutes.Text = "00";
+            TimerLabelHours.Text = "00";
+            TimeProgressBar.Value = 0;
+        }
+
+        private void SetIsEnabled(bool state)
+        {
+            KeyboardGroupbox.IsEnabled = state;
+            OptionsGroupBox.IsEnabled = state;
+
+            StopButton.IsEnabled = !state;
+            StartButton.IsEnabled = state;
+        }
+
+        private int UpdateTimerLabels()
+        {
+            int secondsPassed = Convert.ToInt32(TimerLabelSeconds.Text);
+            int minutesPassed = Convert.ToInt32(TimerLabelMinutes.Text);
+            int hoursPassed = Convert.ToInt32(TimerLabelHours.Text);
+
+            if (secondsPassed % 60 == 0 && secondsPassed > 0)
+            {
+                TimerLabelSeconds.Text = "00";
+                minutesPassed = minutesPassed + 1;
+                secondsPassed = 0;
+
+                if (minutesPassed % 60 == 0 && minutesPassed > 0)
+                {
+                    TimerLabelMinutes.Text = "00";
+                    hoursPassed = hoursPassed + 1;
+                    minutesPassed = 0;
+                }
+            }
+
+            secondsPassed = secondsPassed + 1;
+
+            TimerLabelSeconds.Text = secondsPassed < 10 ? "0" + secondsPassed : secondsPassed.ToString();
+            TimerLabelMinutes.Text = minutesPassed < 10 ? "0" + minutesPassed : minutesPassed.ToString();
+            TimerLabelHours.Text = hoursPassed < 10 ? "0" + hoursPassed : hoursPassed.ToString();
+
+            return secondsPassed;
+        }
+
+        #endregion
+
+
+        public Point GetMousePosition()
+        {
+            System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
+            return new Point(point.X, point.Y);
+        }
+
+
+
+        private void StartButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetIsEnabled(false);
+
+            interval = Convert.ToInt32(IntervalTextBox.Text);
+
+            InitializeProgressBar();
+            InitializeTimer();
+
+            timer.Start();
+        }
+
+        private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            SetIsEnabled(true);
+
+            timer.Stop();
+
+            ResetTimerValues();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            var secondsPassed = UpdateTimerLabels();
+            var mod = secondsPassed % interval;
+
+            if (mod == 0)
+            {
+                MoveMouse();
+            }
+
+            TimeProgressBar.Value = mod;
+        }
+
+        private void MoveMouse()
+        {
+            var random = new Random();
+            var numberOfMoves = random.Next(Convert.ToInt32(NumberOfActionsMinValueTextBox.Text), Convert.ToInt32(NumberOfActionsMaxValueTextBox.Text));
+            var currentMousePosition = GetMousePosition();
+
+            for (int i = 1; i <= numberOfMoves; i++)
+            {
+                SetCursorPos((int)currentMousePosition.X + random.Next(200), (int)currentMousePosition.Y);
+                System.Threading.Thread.Sleep(50);
+                SetCursorPos((int)currentMousePosition.X + random.Next(200), (int)currentMousePosition.Y - random.Next(200));
+                System.Threading.Thread.Sleep(50);
+                SetCursorPos((int)currentMousePosition.X, (int)currentMousePosition.Y - random.Next(200));
+                System.Threading.Thread.Sleep(50);
+
+                if ((bool)IsKeyboardIncluded.IsChecked)
+                {
+                    SendKeys.SendWait(KeyboardInputTextBox.Text);
+                }
+            }
+
+            SetCursorPos((int)currentMousePosition.X, (int)currentMousePosition.Y);
+        }
+
+
     }
 }
