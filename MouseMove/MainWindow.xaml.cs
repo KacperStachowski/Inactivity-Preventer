@@ -32,6 +32,8 @@ namespace MouseMove
 
             SetIsEnabled(true);
             IsKeyboardIncluded.IsChecked = true;
+
+            ShowAboutPanel(false);
         }
 
         #region -- Initialization methods --
@@ -140,6 +142,19 @@ namespace MouseMove
             }
         }
 
+        private void AboutLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (AboutGrid.Visibility == Visibility.Visible)
+            {
+                ShowAboutPanel(false);
+            }
+
+            else
+            {
+                ShowAboutPanel(true);
+            }
+        }
+
         #endregion
 
         #region -- Value setting methods --
@@ -188,6 +203,20 @@ namespace MouseMove
             TimerLabelHours.Text = hoursPassed < 10 ? "0" + hoursPassed : hoursPassed.ToString();
 
             return secondsPassed;
+        }
+
+        private void ShowAboutPanel(bool state)
+        {
+            if (state == true)
+            {
+                AboutGrid.Visibility = Visibility.Visible;
+                MouseImage.Opacity = 0.2;
+            }
+            else
+            {
+                AboutGrid.Visibility = Visibility.Hidden;
+                MouseImage.Opacity = 1;
+            }
         }
 
         #endregion
@@ -258,7 +287,6 @@ namespace MouseMove
 
             SetCursorPos((int)currentMousePosition.X, (int)currentMousePosition.Y);
         }
-
 
     }
 }

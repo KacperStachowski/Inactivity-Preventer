@@ -17,7 +17,6 @@ C:\Users\kacpe_000.BATMAN\Desktop\Inactivity Preventer\inactivitypreventer\Mouse
 C:\Users\kacpe_000.BATMAN\Desktop\Inactivity Preventer\inactivitypreventer\MouseMove\obj\Release\InactivityPreventer.pdb
 C:\Users\kacpe_000.BATMAN\Desktop\Inactivity Preventer\inactivitypreventer\MouseMove\bin\Release\InactivityPreventer.exe
 C:\Users\kacpe_000.BATMAN\Desktop\Inactivity Preventer\inactivitypreventer\MouseMove\bin\Release\InactivityPreventer.pdb
-C:\Users\kacpe_000.BATMAN\Desktop\Inactivity Preventer\inactivitypreventer\MouseMove\obj\Release\InactivityPreventer.csprojResolveAssemblyReference.cache
 C:\Users\kacpe_000.BATMAN\Desktop\Inactivity Preventer\inactivitypreventer\MouseMove\obj\Release\MainWindow.g.cs
 C:\Users\kacpe_000.BATMAN\Desktop\Inactivity Preventer\inactivitypreventer\MouseMove\obj\Release\App.g.cs
 C:\Users\kacpe_000.BATMAN\Desktop\Inactivity Preventer\inactivitypreventer\MouseMove\obj\Release\InactivityPreventer_MarkupCompile.cache
