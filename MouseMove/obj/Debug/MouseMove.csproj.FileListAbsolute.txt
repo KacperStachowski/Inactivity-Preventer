@@ -1,0 +1,14 @@
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\bin\Debug\MouseMove.exe.config
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\bin\Debug\MouseMove.exe
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\bin\Debug\MouseMove.pdb
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MouseMove.csprojResolveAssemblyReference.cache
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MainWindow.g.cs
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\App.g.cs
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MouseMove_MarkupCompile.cache
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MouseMove_MarkupCompile.lref
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MainWindow.baml
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MouseMove.g.resources
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MouseMove.Properties.Resources.resources
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MouseMove.csproj.GenerateResource.Cache
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MouseMove.exe
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Debug\MouseMove.pdb

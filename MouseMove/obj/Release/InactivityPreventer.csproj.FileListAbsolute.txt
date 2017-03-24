@@ -1,0 +1,14 @@
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\MainWindow.g.cs
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\App.g.cs
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\MainWindow.baml
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\InactivityPreventer.csproj.GenerateResource.Cache
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\bin\Release\InactivityPreventer.exe.config
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\bin\Release\InactivityPreventer.exe
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\bin\Release\InactivityPreventer.pdb
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\InactivityPreventer_MarkupCompile.cache
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\InactivityPreventer_MarkupCompile.lref
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\InactivityPreventer.g.resources
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\InactivityPreventer.Properties.Resources.resources
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\InactivityPreventer.exe
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\InactivityPreventer.pdb
+C:\Users\kacper.stachowski\Desktop\MouseMove v2.0\MouseMove\MouseMove\obj\Release\InactivityPreventer.csprojResolveAssemblyReference.cache
