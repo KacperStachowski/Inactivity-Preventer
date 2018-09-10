@@ -76,7 +76,7 @@ namespace MouseMove
 
                 if (!isInt || result < 1)
                 {
-                    control.Text = "1";
+                    control.Text = "5";
                     e.Handled = true;
                 }
 
