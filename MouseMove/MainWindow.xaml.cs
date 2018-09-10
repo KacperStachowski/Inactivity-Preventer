@@ -58,12 +58,12 @@ namespace MouseMove
 
         private void IsKeyboardIncluded_Checked(object sender, RoutedEventArgs e)
         {
-            KeyboardOptionsStackPanel.IsEnabled = true;
+            KeyboardOptionsGrid.IsEnabled = true;
         }
 
         private void IsKeyboardIncluded_Unchecked(object sender, RoutedEventArgs e)
         {
-            KeyboardOptionsStackPanel.IsEnabled = false;
+            KeyboardOptionsGrid.IsEnabled = false;
         }
 
         private void NumberOfActionsMinValueTextBox_LostFocus(object sender, RoutedEventArgs e)
@@ -74,9 +74,9 @@ namespace MouseMove
                 int result;
                 var isInt = int.TryParse(control.Text, out result);
 
-                if (!isInt || result < 10)
+                if (!isInt || result < 1)
                 {
-                    control.Text = "10";
+                    control.Text = "1";
                     e.Handled = true;
                 }
 
@@ -210,12 +210,10 @@ namespace MouseMove
             if (state == true)
             {
                 AboutGrid.Visibility = Visibility.Visible;
-                MouseImage.Opacity = 0.2;
             }
             else
             {
                 AboutGrid.Visibility = Visibility.Hidden;
-                MouseImage.Opacity = 1;
             }
         }
 
@@ -256,12 +254,20 @@ namespace MouseMove
             var secondsPassed = UpdateTimerLabels();
             var mod = secondsPassed % interval;
 
+            //ensures that progress bar will reach max value when mouse moves
+            if (mod == 0 && secondsPassed > 0)
+            {
+                TimeProgressBar.Value = interval;
+            }
+            else
+            {
+                TimeProgressBar.Value = mod;
+            }
+
             if (mod == 0)
             {
                 MoveMouse();
             }
-
-            TimeProgressBar.Value = mod;
         }
 
         private void MoveMouse()

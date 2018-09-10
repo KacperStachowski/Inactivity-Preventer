@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="InactivityPreventer.About"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" >
+
+    <Grid Background="#E1FFFFFF">
+        <Grid HorizontalAlignment="Center"
+              VerticalAlignment="Center">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.Resources>
+                <Style TargetType="{x:Type TextBlock}">
+                    
+                    <Setter Property="FontSize" Value="15" />
+                    <Setter Property="Margin" Value="5,10" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                </Style>
+                
+                <Style x:Key="AboutContent" TargetType="{x:Type TextBlock}"
+                       BasedOn="{StaticResource {x:Type TextBlock}}">
+
+                    <Setter Property="FontWeight" Value="Normal" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                </Style>
+
+                <Style TargetType="{x:Type StackPanel}">
+                    <Style.Resources>
+                        <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource AboutContent}" />
+                    </Style.Resources>
+
+                    <Setter Property="Orientation" Value="Vertical" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                </Style>
+            </Grid.Resources>
+
+
+            <TextBlock Text="Version:"
+                       Grid.Row="0"
+                       Grid.Column="0" />
+
+            <TextBlock Text="1.1"
+                       Style="{StaticResource AboutContent}"
+                       Grid.Row="0"
+                       Grid.Column="1" />
+
+
+            <TextBlock Text="Code:" 
+                       Grid.Row="2"
+                       Grid.Column="0" />
+
+            <StackPanel Grid.Row="2"
+                        Grid.Column="1">
+
+                <TextBlock Text="Kacper Stachowski"/>
+
+                <TextBlock Text="k.stachowski92@gmail.com" 
+                           Margin="5,-5,5,5"/>
+            </StackPanel>
+
+
+            <TextBlock Text="Mouse image:" 
+                       Grid.Row="4"
+                       Grid.Column="0" />
+
+            <StackPanel Grid.Row="4"
+                        Grid.Column="1">
+
+                <TextBlock Text="Kaja Kosmala"/>
+
+                <TextBlock Text="nemezis1314@gmail.com"
+                           Margin="5,-5,5,5"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -3,184 +3,55 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MouseMove"
+        xmlns:local="clr-namespace:InactivityPreventer"
         mc:Ignorable="d"
         Title="Inactivity Preventer" 
         Height="600" 
-        Width="550"
+        Width="500"
         ResizeMode="NoResize">
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <Grid.Resources>
-            <Style TargetType="{x:Type Button}" >
-                <Setter Property="Height" Value="30" />
-                <Setter Property="Width" Value="150" />
-                <Setter Property="FontSize" Value="15" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="Margin" Value="10" />
-            </Style>
-
-            <Style TargetType="{x:Type StackPanel}" >
-                <Setter Property="HorizontalAlignment" Value="Center" />
-                <Setter Property="Orientation" Value="Horizontal" />
-            </Style>
-
-            <Style TargetType="{x:Type Label}" >
-                <Setter Property="Margin" Value="10,5" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="VerticalAlignment" Value="Center"/>
-                <Setter Property="FontSize" Value="15" />
-            </Style>
-
-            <Style TargetType="{x:Type TextBlock}" >
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="FontSize" Value="20" />
-                <Setter Property="Margin" Value="2,10" />
-            </Style>
-
-            <Style TargetType="{x:Type TextBox}" >
-                <Setter Property="HorizontalAlignment" Value="Center" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="Height" Value="30" />
-                <Setter Property="FontSize" Value="15" />
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="HorizontalContentAlignment" Value="Right" />
-                <Setter Property="Width" Value="40" />
-                <Setter Property="Margin" Value="2,5,2,5" />
-            </Style>
-            
-        </Grid.Resources>
 
         <Image Source=".\mouse.png" 
                Margin="0,10,0,0"
                Grid.Row="0"
                Panel.ZIndex="1"
-               x:Name="MouseImage"
-               Opacity="0.3"/>
+               x:Name="MouseImage"/>
 
-        <Label Content="?"
+        <Label x:Name="AboutLabel"
+               Content="?"
                Grid.Row="0" 
                VerticalAlignment="Top"
                HorizontalAlignment="Right"
+               FontWeight="Bold"
                FontSize="15"
                Width="30"
                HorizontalContentAlignment="Center"
                Margin="0,0,5,0"
                Panel.ZIndex="11"
-               x:Name="AboutLabel"
                MouseDown="AboutLabel_MouseDown"/>
 
-        <Grid Grid.Row="0"
-              x:Name="AboutGrid"
-              Panel.ZIndex="5"
-              Margin="0,10,0,0"
-              HorizontalAlignment="Center"
-              VerticalAlignment="Center">
+        <local:About x:Name="AboutGrid" 
+                     Grid.Row="0"
+                     Visibility="Hidden"
+                     Panel.ZIndex="5"/>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid.Resources>
-                <Style TargetType="{x:Type TextBlock}" x:Key="AboutHeader" >
-                    <Setter Property="FontSize" Value="15" />
-                    <Setter Property="FontWeight" Value="Bold" />
-                    <Setter Property="HorizontalAlignment" Value="Right" />
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="Margin" Value="5,10" />
-                </Style>
-
-                <Style TargetType="{x:Type TextBox}" x:Key="AboutContent">
-                    <Setter Property="FontSize" Value="15" />
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="Margin" Value="5,10" />
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="BorderThickness" Value="0" />
-                    <Setter Property="BorderBrush" Value="Transparent" />
-                    <Setter Property="IsReadOnly" Value="True" />
-                </Style>
-            </Grid.Resources>
-
-            
-            
-            
-            <TextBlock Text="Version:"
-                       Style="{StaticResource AboutHeader}"
-                       Grid.Row="1"
-                       Grid.Column="0" />
-
-            <TextBox Text="1.0"
-                       Style="{StaticResource AboutContent}"
-                       Grid.Row="1"
-                       Grid.Column="1" />
-
-            
-            <TextBlock Text="Code:" 
-                       Style="{StaticResource AboutHeader}"
-                       Grid.Row="2"
-                       Grid.Column="0" />
-
-            <StackPanel Orientation="Vertical"
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        HorizontalAlignment="Left">
-
-                <TextBox Text="Kacper Stachowski"
-                           Margin="5,5,5,1"
-                           Style="{StaticResource AboutContent}"/>
-
-                <TextBox Text="kacper_st@op.pl" 
-                           Margin="5,1,5,5"
-                           Style="{StaticResource AboutContent}"/>
-            </StackPanel>
-
-            
-            <TextBlock Text="Mouse image:" 
-                       Style="{StaticResource AboutHeader}"
-                       Grid.Row="3"
-                       Grid.Column="0" />
-
-            <StackPanel Orientation="Vertical"
-                        HorizontalAlignment="Left"
-                        Grid.Row="3"
-                        Grid.Column="1">
-
-                <TextBox Text="Kaja Kosmala"
-                           Style="{StaticResource AboutContent}"
-                           Margin="5,5,5,1"/>
-
-                <TextBox Text="nemezis1314@gmail.com"
-                           Margin="5,1,5,5"
-                           Style="{StaticResource AboutContent}"/>
-            </StackPanel>
-
-        </Grid>
-
-        <StackPanel Grid.Row="1"
-                    x:Name="TimerStackPanel">
+        <StackPanel x:Name="TimerStackPanel"
+                    Grid.Row="1">
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource Timer_TextBlock}" />
+            </StackPanel.Resources>
 
             <Label Content="Time passed:"
-                   FontSize="20"
-                   FontWeight="Bold"
-                   Margin="10,10,0,10"/>
+                   Style="{StaticResource Timer_Label}"/>
 
             <TextBlock x:Name="TimerLabelHours"
                        Text="00"/>
@@ -194,57 +65,52 @@
 
             <TextBlock x:Name="TimerLabelSeconds"
                        Text="00"/>
-
         </StackPanel>
 
-
         <GroupBox Header="Options"
-                  Margin="10,5"
                   Grid.Row="2"
                   x:Name="OptionsGroupBox">
     
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Left">
    
-                <StackPanel Margin="0,0,10,0">
+                <StackPanel Margin="0,0,10,0"
+                            ToolTip="Set how many actions will be performed per loop. The number of actions will be selected randomly for every loop, by given range.">
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource Short_TextBox}" />
+                    </StackPanel.Resources>
                 
-                    <Label Content="Actions per loop:" 
-                           ToolTip="Set how many actions will be performed per loop. The number of actions will be selected randomly for every loop, by given range."
-                           Margin="0,0,2,0"/>
+                    <Label Content="Actions per loop:" />
 
                     <TextBox Text="10" 
-                             MaxLength="2"
                              x:Name="NumberOfActionsMinValueTextBox"
-                             ToolTip="Set how many actions will be performed per loop. The number of actions will be selected randomly for every loop, by given range. Minimum value is 10 and maximum is 98."
                              LostFocus="NumberOfActionsMinValueTextBox_LostFocus"/>
 
                     <Label Content="-" 
                            Margin="2,0,2,0"/>
 
-                    <TextBox Text="30"
-                             MaxLength="2"
+                    <TextBox Text="20"
                              x:Name="NumberOfActionsMaxValueTextBox"
-                             ToolTip="Set how many actions will be performed per loop. The number of actions will be selected randomly for every loop, by given range. Minimum value is 11 and maximum is 99."
                              LostFocus="NumberOfActionsMaxValueTextBox_LostFocus"/>
                 </StackPanel>
-            
-                <StackPanel Margin="10,0,0,0">
 
-                    <Label Content="Interval [s]:" 
-                           Margin="0,0,2,0"
-                           ToolTip="Set how much time has to pass between actions."/>
+                <StackPanel Margin="20,0,0,0"
+                            ToolTip="Set how much time has to pass between actions.">
+
+                    <Label Content="Interval:" />
 
                     <TextBox Text="30" 
+                             Style="{StaticResource Short_TextBox}"
                              x:Name="IntervalTextBox"
-                             Margin="2,0,0,0"
-                             ToolTip="Set how much time has to pass between actions."
                              LostFocus="IntervalTextBox_LostFocus"/>
+
+                    <Label Content="seconds" 
+                           Margin="0,5,5,5"/>
                 </StackPanel>
              
             </StackPanel>
         </GroupBox>
 
-        <GroupBox Margin="10,5"
-                  Grid.Row="3"
+        <GroupBox Grid.Row="3"
                   x:Name="KeyboardGroupbox">
             <GroupBox.Header>
                 <CheckBox x:Name="IsKeyboardIncluded" 
@@ -253,42 +119,44 @@
                           VerticalContentAlignment="Center">
                     <CheckBox.Content>
                         <TextBlock Text="Use keyboard while performing action"
-                                   FontSize="12"
+                                   FontSize="14"
                                    Margin="2,0,0,0"/>
                     </CheckBox.Content>
                 </CheckBox>
             </GroupBox.Header>
 
-            <StackPanel x:Name="KeyboardOptionsStackPanel">
+            <Grid x:Name="KeyboardOptionsGrid">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
                 <Label Content="Text written per action:" 
-                       ToolTip="Set what will be written in each action. You can input up to 10 characters."
-                       Margin="0,0,2,0"/>
+                       Grid.Column="0"/>
 
-                <TextBox Text="Q" 
-                         x:Name="KeyboardInputTextBox"
+                <TextBox x:Name="KeyboardInputTextBox"
+                         Grid.Column="2"
+                         Text="Some text"
+                         HorizontalAlignment="Stretch"
                          HorizontalContentAlignment="Left"
-                         MaxLength="10"
-                         Width="100"
-                         ToolTip="Set what will be written in each action. You can input up to 10 characters."/>
-            </StackPanel>
+                         ToolTip="Set what will be written in each action"/>
+            </Grid>
         </GroupBox>
 
         <StackPanel Grid.Row="4">
 
-            <Button FontWeight="Bold"
+            <Button x:Name="StartButton"
                     Content="Start"
-                    x:Name="StartButton"
                     Click="StartButton_Click"/>
 
-            <Button Content="Stop"
-                    x:Name="StopButton"
+            <Button x:Name="StopButton"
+                    Content="Stop"
                     Click="StopButton_Click"/>
         </StackPanel>
 
         <ProgressBar Grid.Row="5" 
-                     Height="10"
                      x:Name="TimeProgressBar"/>
-
     </Grid>
 </Window>

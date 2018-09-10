@@ -4,6 +4,125 @@
              xmlns:local="clr-namespace:MouseMove"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
+        <!--#region  = DEFAULT STYLES =-->
+
+        <Style TargetType="{x:Type ProgressBar}">
+            <Setter Property="Foreground" Value="#00d06c" />
+            <Setter Property="Background" Value="#80FFFFFF" />
+            <Setter Property="BorderBrush" Value="#80FFFFFF" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Height" Value="10" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid x:Name="TemplateRoot" 
+                              SnapsToDevicePixels="True">
+                            
+                            <Rectangle Fill="{TemplateBinding Background}"
+                                       RadiusY="2" 
+                                       RadiusX="2"/>
+
+                            <Border Margin="1"
+                                    Background="#50FFFFFF"/>
+
+                            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Margin="1"/>
+                            
+                            <Rectangle x:Name="PART_Track" 
+                                       Margin="1"/>
+                            
+                            <Decorator x:Name="PART_Indicator" 
+                                       HorizontalAlignment="Left" 
+                                       Margin="1">
+                                
+                                <Grid x:Name="Foreground">
+                                    
+                                    <Rectangle x:Name="Indicator" 
+                                               Fill="{TemplateBinding Foreground}"/>
+                                </Grid>
+                            </Decorator>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                                    BorderThickness="{TemplateBinding BorderThickness}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Orientation" Value="Vertical">
+                                <Setter Property="LayoutTransform" TargetName="TemplateRoot">
+                                    <Setter.Value>
+                                        <RotateTransform Angle="-90"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Margin" Value="10,5,10,5" />
+        </Style>
+
+        <Style TargetType="{x:Type Button}" >
+            <Setter Property="Height" Value="30" />
+            <Setter Property="Width" Value="150" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+
+        <Style TargetType="{x:Type StackPanel}" >
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="Orientation" Value="Horizontal" />
+        </Style>
+
+        <Style TargetType="{x:Type Label}" >
+            <Setter Property="Margin" Value="5,5" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="15" />
+        </Style>
+
+        <Style TargetType="{x:Type TextBox}" >
+            <Setter Property="Margin" Value="2,5,2,5" />
+            <Setter Property="Padding" Value="5,0,5,0" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        
+        <!--#endregion-->
+        
+        <!--#region = EXPLICIT STYLES =-->
+
+        <Style x:Key="Timer_Label" TargetType="{x:Type Label}"
+               BasedOn="{StaticResource {x:Type Label}}">
+
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="10,10,0,10" />
+        </Style>
+        
+        <Style x:Key="Timer_TextBlock" TargetType="{x:Type TextBlock}" >
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="Margin" Value="2,10" />
+        </Style>
+
+        <Style x:Key="Short_TextBox" TargetType="{x:Type TextBox}"  
+               BasedOn="{StaticResource {x:Type TextBox}}">
+            
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="MaxLength" Value="2" />
+            <Setter Property="Width" Value="40" />
+        </Style>
+        
+        <!--#endregion-->
     </Application.Resources>
 </Application>
